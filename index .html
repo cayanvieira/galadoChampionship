@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galado Championship - MTG Natal</title>
+    <style>
+        :root {
+            --bg-color: #121214;
+            --card-bg: #1a1a1e;
+            --accent-color: #ff9f1c;
+            --text-color: #e1e1e6;
+            --border-color: #29292e;
+            --link-color: #ffb800;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #202024 0%, #121214 100%);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            color: #8d8d99;
+            font-style: italic;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            margin-top: 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        /* Estilos da Tabela */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #202024;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #222226;
+        }
+
+        /* Estilos das Regras */
+        ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        /* Estilos dos Jogadores e Decks */
+       
+        .card-jogador {
+            background-color: #202024;
+            border-radius: 6px;
+            padding: 20px;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 20px;
+            
+        }
+
+        .card-jogador h3 {
+            margin: 0 0 10px 0;
+            color: #fff;
+        }
+
+        /* Ajuste do botão do deck para link clicável */
+        .badge-deck {
+            background-color: #29292e;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--link-color);
+            display: inline-block;
+            margin-top: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.2s, color 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .badge-deck:hover {
+            background-color: var(--accent-color);
+            color: #121214;
+            cursor: pointer;
+        }
+
+         /* Estilos da aba retrátil de decks */
+        .dropdown-deck {
+            margin-top: 10px;
+        }
+
+        .dropdown-deck[open] .badge-deck {
+            background-color: var(--accent-color);
+            color: #121214;
+        }
+
+        .lista-cartas {
+            background-color: #121214;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 10px 15px;
+            margin-top: 8px;
+        }
+
+        .lista-cartas ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .lista-cartas li {
+            font-size: 0.9rem;
+            padding: 4px 0;
+            border-bottom: 1px dashed #29292e;
+            color: #c9c9d4;
+        }
+
+        .lista-cartas li:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7c7c8a;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🏆 Galado Championship</h1>
+        <p>O maior torneio de Magic caseiro de Natal/RN</p>
+    </header>
+
+    <main>
+        <!-- SEÇÃO: TABELA DO CAMPEONATO -->
+        <!-- SEÇÃO: CLASSIFICAÇÃO COM ABAS -->
+        <section id="classificacao" >
+            <div style="justify-content: center; display: flex;">
+                <h2 style="justify-items: center;">Tabela de Classificação</h2>
+            </div>
+          
+            
+            <div class="tabs-container">
+                <!-- Botões de Alternância -->
+                <div class="tab-buttons" >
+                    <button class="tab-btn active" onclick="openTab(event, 'modern')">⚔️ Modern</button>
+                    
+                </div>
+                <!-- Conteúdo Aba: Modern -->
+                <div id="modern" class="tab-content active">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Posição</th>
+                                    <th>Jogador</th>
+                                    <th>Vitórias</th>
+                                    <th>Pontos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1º</td>
+                                    <td>Thales</td>
+                                    <td>2</td>
+                                    
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>2º</td>
+                                    <td>Gabriel</td>
+                                    <td>2</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>3º</td>
+                                    <td>Fell</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>4º</td>
+                                    <td>Wendel</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>5º</td>
+                                    <td>Cayan</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>6º</td>
+                                    <td>Biriba</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div style="margin-top: 15px;">
+                    <button class="tab-btn" onclick="openTab(event, 'commander')">👑 Commander</button>
+                </div>
+                <!-- Conteúdo Aba: Commander -->
+                <div id="commander" class="tab-content">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Posição</th>
+                                    <th>Jogador</th>
+                                    <th>Vitórias</th>
+                                    <th>Pontos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1º</td>
+                                    <td>Thales</td>
+                                    <td>0</td>
+                                    
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>2º</td>
+                                    <td>Gabriel</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>3º</td>
+                                    <td>Fell</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>4º</td>
+                                    <td>Wendel</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>5º</td>
+                                    <td>Cayan</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>6º</td>
+                                    <td>Biriba</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="regras">
+            <h2>Premiação do mês</h2>
+            <ul>
+                <li>1º Lugar: 1 Booster </li>
+            </ul>
+        </section>
+
+        <section id="regras">
+            <h2>Regras do jogo</h2>
+            <ol>
+                <li><strong>Formato:</strong> Commander/Modern Casual</li>
+                <li><strong>Proxies:</strong> Não são permitidas proxies.</li>
+                <li><strong>Postura:</strong> O foco é a diversão. Combos infinitos no turno 3 ou travas completas de mesa (Hard Stax) são proibidos.</li>
+                <li><strong>Pontuação:</strong> Vitória vale 3 pontos. Eliminação de jogadores valem 1 ponto.</li>
+                <li><strong>Mulligan:</strong> O primeiro mulligan é grátis. Depois, aplica-se a regra padrão.</li>
+                <li><strong>Regras da casa:</strong> Cada um lava seu próprio prato, copo e etc...</li>
+            </ol>
+        </section>
+
+        <section id="ban-cards-modern">
+            <h2>Cartas banidas (Modern)</h2>
+            <ol>
+                <li><strong>Sol Ring</li>
+            </ol>
+        </section>
+
+        <section id="ban-cards-commander">
+            <h2>Cartas banidas (Commander)</h2>
+            <ol>
+                <li><strong>Nenhuma até o momento</li>
+            </ol>
+        </section>
+
+        <!-- SEÇÃO: JOGADORES E DECKS -->
+               <!-- SEÇÃO: JOGADORES E DECKS -->
+        <section id="jogadores">
+            <h2>Jogadores e Decks</h2>
+            <div style="width: 100% ; " class="grid-jogadores">
+                
+                <!-- JOGADOR 1 -->
+                <div class="card-jogador">
+                    <h3>Cayan</h3>
+                    
+                    <!-- Aba Retrátil do Deck -->
+                    <details class="dropdown-deck">
+                        <summary class="badge-deck">🃏 Ver Decklist (Edgar Markov)</summary>
+                        <div class="lista-cartas">
+                            <ul>
+                                <li>1 Edgar Markov (Comandante)</li>
+                                <li>1 Vampiro Cativante</li>
+                                <li>1 Captor de Almas</li>
+                                <li>1 Aristocrata Indulgente</li>
+                                <li>1 Visconde Sanguinário</li>
+                                <li>1 Reconquista Patriarcal</li>
+                                <li>34 Terrenos (Pântanos e Montanhas)</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- JOGADOR 2 -->
+                <div class="card-jogador">
+                    <h3>Thales</h3>
+
+                    <details class="dropdown-deck">
+                        <summary class="badge-deck">🃏 Ver Decklist (Yuriko)</summary>
+                        <div class="lista-cartas">
+                            <ul>
+                                <li>1 Yuriko, a Sombra do Tigre (Comandante)</li>
+                                <li>1 Infiltrador de Deepwater</li>
+                                <li>1 Shinobi Incendiário</li>
+                                <li>1 Ornitóptero</li>
+                                <li>1 Tutor Diabólico</li>
+                                <li>1 Tempestade Cerebral</li>
+                                <li>33 Terrenos (Ilhas e Pântanos)</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- JOGADOR 3 -->
+                <div class="card-jogador">
+                    <h3>Gabriel</h3>
+                    
+                    <details class="dropdown-deck">
+                        <summary class="badge-deck">🃏 Ver Decklist (Nekusar)</summary>
+                        <div class="lista-cartas">
+                            <ul>
+                                <li>1 Nekusar, o Mindrazer (Comandante)</li>
+                                <li>1 Sonho da Gaveta</li>
+                                <li>1 Reforjar a Alma</li>
+                                <li>1 Timetwister (Proxy)</li>
+                                <li>1 Quebra-Mentes</li>
+                                <li>35 Terrenos (Grixis)</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- JOGADOR 4 -->
+                <div class="card-jogador">
+                    <h3>Fell</h3>
+                    
+                    <details class="dropdown-deck">
+                        <summary class="badge-deck">🃏 Ver Decklist (Lathril)</summary>
+                        <div class="lista-cartas">
+                            <ul>
+                                <li>1 Lathril, Lâmina dos Elfos (Comandante)</li>
+                                <li>1 Arqueiro de Tronco de Elfo</li>
+                                <li>1 Campeão de Folha d'Ouro</li>
+                                <li>1 Ancião de Kulrath</li>
+                                <li>1 Monumento de Eldrazi</li>
+                                <li>34 Terrenos (Florestas e Pântanos)</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="card-jogador">
+                    <h3>Biriba</h3>
+                    
+                    <details class="dropdown-deck">
+                        <summary class="badge-deck">🃏 Ver Decklist (Lathril)</summary>
+                        <div class="lista-cartas">
+                            <ul>
+                                <li>1 Lathril, Lâmina dos Elfos (Comandante)</li>
+                                <li>1 Arqueiro de Tronco de Elfo</li>
+                                <li>1 Campeão de Folha d'Ouro</li>
+                                <li>1 Ancião de Kulrath</li>
+                                <li>1 Monumento de Eldrazi</li>
+                                <li>34 Terrenos (Florestas e Pântanos)</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+                <div class="card-jogador">
+                    <h3>Wendel</h3>
+                    
+                    <details class="dropdown-deck">
+                        <summary class="badge-deck">🃏 Ver Decklist (Lathril)</summary>
+                        <div class="lista-cartas">
+                            <ul>
+                                <li>1 Lathril, Lâmina dos Elfos (Comandante)</li>
+                                <li>1 Arqueiro de Tronco de Elfo</li>
+                                <li>1 Campeão de Folha d'Ouro</li>
+                                <li>1 Ancião de Kulrath</li>
+                                <li>1 Monumento de Eldrazi</li>
+                                <li>34 Terrenos (Florestas e Pântanos)</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Atualizado após a rodada do fim de semana. Direto de Natal/RN.</p>
+    </footer>
+
+</body>
+</html>
+<script>
+    const dadosJogadores = [
+    {
+        nome: "Cayan",
+        cartas: [
+            "4 Gifted Aetherborn",
+            "2 Tinybones, Bauble Burglar",
+            "3 Nighthawk Scavenger",
+            "2 Vito, Thorn of the Dusk Rose",
+            "2 Erebos, God of the Dead",
+            "1 Grim Servant",
+            "4 Gray Merchant of Asphodel",
+            "2 K'rrik, Son of Yawgmoth",
+            "4 Duress",
+            "3 Dark Ritual",
+            "2 Feed the Swarm",
+            "1 Sign in Blood",
+            "2 Exsanguinate",
+            "1 Blasphemous Edict",
+            "2 Phyrexian Arena",
+            "2 Sanguine Bond",
+            "21 Swamp",
+            "2 Bojuka Bog",
+            "2 Font of Agonies",
+            "1 Bloodthirsty Conqueror",
+            "1 Vilis, Broker of Blood"
+        ]
+    },
+    
+];
+
+function atualizarDecksNoFront(jogadores) {
+    // Seleciona o container onde os cards dos jogadores ficam guardados
+    const container = document.querySelector(".grid-jogadores");
+    
+    // Limpa o conteúdo antigo para não duplicar
+    container.innerHTML = "";
+
+    // Percorre cada jogador do objeto para criar o HTML dinamicamente
+    jogadores.forEach(jogador => {
+        // Cria a lista de cartas em formato HTML li
+        const listaItensHTML = jogador.cartas
+            .map(carta => `<li>${carta}</li>`)
+            .join("");
+
+        // Monta a estrutura completa do card do jogador
+        const cardHTML = `
+            <div class="card-jogador">
+                <h3>${jogador.nome}</h3>
+                <details class="dropdown-deck">
+                    <summary class="badge-deck"> Ver Decklist </summary>
+                    <div class="lista-cartas">
+                        <ul>
+                            ${listaItensHTML}
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        `;
+
+        // Insere o novo card dentro do container na página
+        container.innerHTML += cardHTML;
+    });
+}
+
+// Executa a função assim que a página carregar usando os seus dados
+window.onload = function() {
+    atualizarDecksNoFront(dadosJogadores);
+};
+</script>
